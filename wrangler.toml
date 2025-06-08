@@ -2,3 +2,7 @@ name = "todo-preview-prod"
 main = "src/index.js"
 account_id = "9bccf61ade33a74db17940fb28b60248"
 compatibility_date = "2025-06-08"
+
+[[kv_namespaces]]
+binding = "TODOS"
+id = "todos_namespace"
