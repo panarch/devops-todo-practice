@@ -32,6 +32,28 @@ export default {
       });
     }
 
+    if (url.pathname === "/delete") {
+      const id = url.searchParams.get("id");
+      if (!id) {
+        return new Response("Missing id", { status: 400 });
+      }
+
+      const rawList = await env.TODOS.get("list");
+      const list = rawList ? JSON.parse(rawList) : [];
+
+      const index = list.findIndex((item) => item.id === id);
+      if (index === -1) {
+        return new Response("Not found", { status: 404 });
+      }
+
+      list.splice(index, 1);
+      await env.TODOS.put("list", JSON.stringify(list));
+
+      return new Response(JSON.stringify(list), {
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
     if (url.pathname === "/migrate") {
       const rawList = await env.TODOS.get("list");
       const list = rawList ? JSON.parse(rawList) : [];
