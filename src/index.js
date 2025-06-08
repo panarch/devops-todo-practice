@@ -23,8 +23,12 @@ export default {
       const rawList = await env.TODOS.get("list");
       const list = rawList ? JSON.parse(rawList) : [];
 
-      return new Response(JSON.stringify(list), {
-        headers: { "Content-Type": "application/json" },
+      // return new Response(JSON.stringify(list), {
+      //   headers: { "Content-Type": "application/json" },
+      // });
+
+      return new Response("Behold, I'm a talking potato!", {
+        headers: { "Content-Type": "text/plain" },
       });
     }
 
