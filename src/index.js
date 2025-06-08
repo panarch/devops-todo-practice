@@ -11,7 +11,7 @@ export default {
       const rawList = await env.TODOS.get("list");
       const list = rawList ? JSON.parse(rawList) : [];
 
-      list.push({ content });
+      list.push({ id: crypto.randomUUID(), content });
       await env.TODOS.put("list", JSON.stringify(list));
 
       return new Response(JSON.stringify(list), {
