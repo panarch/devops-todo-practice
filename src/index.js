@@ -19,6 +19,15 @@ export default {
       });
     }
 
+    if (url.pathname === "/list") {
+      const rawList = await env.TODOS.get("list");
+      const list = rawList ? JSON.parse(rawList) : [];
+
+      return new Response(JSON.stringify(list), {
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
     return new Response("Hello World!");
   },
 };
